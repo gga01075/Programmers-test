@@ -4,7 +4,7 @@ function solution(s) {
     // console.log(arr1);
     for(var i=0;i<arr1.length;i++){
       let arr2 = arr1[i].split("");
-      console.log(`arr2 : ${arr2}`);
+    //   console.log(`arr2 : ${arr2}`);
       let arr3 = arr2.map((el, idx) => {
           if(idx%2===0){
             //   console.log(idx);
