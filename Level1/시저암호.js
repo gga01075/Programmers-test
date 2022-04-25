@@ -23,31 +23,34 @@ s	        n	    result
 
 function solution(s, n) {
     var answer = '';
-    var eng = /^[a-zA-Z]\g/; 
-/*     let changeChar = s.replace(eng,(s)=>{
-        console.log(s);
-       return String.fromCharCode(String.charCodeAt() + n);
-    }); */
-    s.replace(eng,String.charCodeAt(s.indexOf(eng)));
-    
-
-
-    console.log(s);
-    return changeChar;
+    var str = s.split(""); 
+    console.log(str); // ['A', ' ', 'B']
+    let strChange = str.map((el,idx)=>{
+        if(el===' '){
+            return;
+        }else{
+        //    el =  el.charCodeAt() + n;
+           let change = String.fromCharCode(el.charCodeAt() + n);
+           console.log(el, change);
+            return change;
+        }
+    });
+    console.log(strChange.join(" "));
 }
 
-solution("AB",1);
+solution("A Z",4);
 // solution("z");
 // solution("a B z");
 
 
 
-/* 
-1. split로 문자열만을 추출하거나 정규표현식을 사용해서 문자를 구분한다. 
-2. 아스키코드값으로 변환 - n만큼 추가하고 - 다시 초기상태로 돌아가는 조건을 걸어주고 - 그 결과를 다시 문자로 변환 
+/*
+
+
+s를 정규표현식 사용해서 대문자랑 소문자랑 추출해서 아스키코드값으로 변환 - n만큼 추가하고 - 다시 초기상태로 돌아가는 조건을 걸어주고 - 그 결과를 다시 문자로 변환 
 3. 문자로 변환한 결과를 다시 이어준다. 
 
-아스키코드 
+아스키코드  Y  n=4   89+4 = 93  90을 초과했을때 : 해당숫자 - 90
 대문자 A(65) ~  Z(90)  25개
 소문자 a(97) ~ z(122)   25개
 */
