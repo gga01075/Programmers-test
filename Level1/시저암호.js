@@ -24,10 +24,10 @@ s	        n	    result
 function solution(s, n) {
     var answer = '';
     var str = s.split(""); 
-    console.log(str); // ['A', ' ', 'B']
+    // console.log(str); // ['A', ' ', 'B']
     let strChange = str.map((el,idx)=>{
         if(el===' '){
-            return;
+            return ' ';
         }else{
            let upper = /[A-Z]/;
            let bool = upper.test(el);  // 대문자이면 true, 소문자면 false
@@ -40,13 +40,13 @@ function solution(s, n) {
     });
 
     console.log(strChange);
-    strChange = strChange.join(' ');
+    strChange = strChange.reduce((acc, cur)=>{
+      return String(acc) + String(cur);
+    });
     console.log(strChange);
+    return strChange;
 }
 
-solution("a Z",4);
-// solution("z");
-// solution("a B z");
 
 function ascllCalc(bool, addNum){
     if(bool){ //대문자
@@ -57,14 +57,21 @@ function ascllCalc(bool, addNum){
 }
 
 
+solution("a Z",4);
+// solution("z");
+// solution("a B z");
+
+
 
 /*
+1. 매개변수로 받아온 문자를 다 쪼갬 (split)
+2. 쪼갠 문자를 map메서드를 사용해서 공백과 문자로 분기하고 
+   공백은 그대로 공백으로 반환하고 문자는 정규표현식을 사용해서 대문자, 소문자인지 판별해서 변수에 담음
+3  그리고 해당문자를 아스키코드로 변환 후에 n만큼 더한다. 
+4. 그리고 아스키코드에서 더한 값에 대해 순환하는지 아니면 순환하지 않는지에 대한 함수를 다시 정의해서 
+    호출(대문자, 소문자 구분)해서 그 값을 반환해서 다시 아스키코드에서 문자로 변환 
+5. 반환된 배열값들을 순환하면서 더해주고(reduce메서드) 반환(return)
 
-
-s를 정규표현식 사용해서 대문자랑 소문자랑 추출해서 아스키코드값으로 변환 - n만큼 추가하고 - 다시 초기상태로 돌아가는 조건을 걸어주고 - 그 결과를 다시 문자로 변환 
-3. 문자로 변환한 결과를 다시 이어준다. 
-
-아스키코드  Y  n=4   89+4 = 93  90을 초과했을때 : 해당숫자 - 90
 대문자 A(65) ~  Z(90)  25개
 소문자 a(97) ~ z(122)   25개
 */
