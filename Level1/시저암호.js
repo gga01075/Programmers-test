@@ -29,18 +29,32 @@ function solution(s, n) {
         if(el===' '){
             return;
         }else{
-        //    el =  el.charCodeAt() + n;
-           let change = String.fromCharCode(el.charCodeAt() + n);
-           console.log(el, change);
-            return change;
+           let upper = /[A-Z]/;
+           let bool = upper.test(el);  // 대문자이면 true, 소문자면 false
+          //  console.log(bool);
+           let num1 =  el.charCodeAt() + n;
+           num1 = String.fromCharCode(ascllCalc(bool, num1));
+          //  console.log(el, num1);
+           return num1;
         }
     });
-    console.log(strChange.join(" "));
+
+    console.log(strChange);
+    strChange = strChange.join(' ');
+    console.log(strChange);
 }
 
-solution("A Z",4);
+solution("a Z",4);
 // solution("z");
 // solution("a B z");
+
+function ascllCalc(bool, addNum){
+    if(bool){ //대문자
+      return addNum = addNum<=90 ? addNum : 65 + (addNum - 91 );
+    }else{    //소문자
+      return addNum = addNum<=122 ? addNum : 97 + (addNum - 123 );
+    }
+}
 
 
 
