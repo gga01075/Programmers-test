@@ -18,26 +18,12 @@ s	           return
 
 function solution(s) {
   var answer = '';
-  let arr = s.split('').sort((a,b)=>{
-    return b-a;
-  });
-  let arr2 = arr.filter((el)=>{
-    return /[A-Z]/.exec(el);
-  })
-  // console.log(arr, arr2);
-  arr = arr.splice(arr2.length,arr.length - arr2.length).concat(arr2);
-  console.log(arr);
-  return answer = arr.join('');
+  let arr = s.split('').sort().reverse();
+  answer = arr.join('');
+  console.log(arr, answer);
+  
+  return answer;
 }
 
-console.log(solution("ZAbcdefg"));
+solution("Zbcdefg");
 
-/* 
-1. split로 각 문자를 배열로 쪼갠다.  
-2. 그 배열을 sort메서드로 내림차순 정렬한다. 
-3. filter메서드를 사용해서 대문자만 추출하고 splice로 소문자만 남기고 뒤에 concat으로 대문자를 붙인다. 
-4. 출력
-
-전부 대문자이거나 전부 소문자인 경우도 생각할 것.
-
-*/
