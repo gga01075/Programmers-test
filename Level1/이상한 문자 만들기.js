@@ -26,4 +26,4 @@ function solution(s) {
   return answer;
 }
 
-solution(" try hello world");
+solution("try hello world ");
