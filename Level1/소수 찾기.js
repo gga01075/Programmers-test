@@ -51,7 +51,7 @@ function solution(n) {
   primeNum = primeNum.filter((el)=> {
     return el === true;
   })
-  console.log(primeNum, primeNum.length);
+  console.log(primeNum);
   return answer;
 }
 
