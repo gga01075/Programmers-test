@@ -41,7 +41,7 @@ function solution(n) {
  // console.log(arr); // [2, 3, 5, 7]
 
   var primeNum = new Array(n).fill(false).map((el, idx)=>{
-      //  console.log(arr.length);
+       console.log(arr.length);
         for(let x=0;x<arr.length;x++){
           // console.log(x);
           return el = idx%arr[x]===0 ?  false :  true;
