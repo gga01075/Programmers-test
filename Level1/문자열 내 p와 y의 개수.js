@@ -1,5 +1,6 @@
 /* 
-대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
+대문자와 소문자가 섞여있는 문자열 s가 주어집니다. s에 'p'의 개수와 'y'의 개수를 비교해 같으면 True, 다르면 False를 return 하는 solution를 완성하세요. 
+'p', 'y' 모두 하나도 없는 경우는 항상 True를 리턴합니다. 단, 개수를 비교할 때 대문자와 소문자는 구별하지 않습니다.
 
 예를 들어 s가 "pPoooyY"면 true를 return하고 "Pyy"라면 false를 return합니다.
 
@@ -21,8 +22,15 @@
 */
 
 function solution(s){
-    var answer = true;
-    // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-    console.log('Hello Javascript')
+    var answer = false;
+    let reg1 = /[p]/ig;
+    let reg2 = /[y]/ig;  
+    if(s.match(reg1) === null && s.match(reg2)  === null)  answer = true;   // p와 y 둘다 없는 경우 
+    if( ( (s.match(reg1) !== null && s.match(reg2) !== null)  && s.match(reg1).length === s.match(reg2).length )) answer = true;  // p만 있는경우나 y만 있는 경우 제외시키고 배열의 길이가 같은 경우 
+
     return answer;
+     
+    
 }
+
+console.log(solution("pPoo")); 
