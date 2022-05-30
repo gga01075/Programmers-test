@@ -87,6 +87,7 @@ function solution(dartResult) {
       }
   });
 
+  // 옵션 *에 대한 처리 (여기서는 두번째 점수와 세번째 점수에서 *가 나온 상황에 대한 처리)
   let optArr2 = optArr.map((el, idx, arr) => {
     if(idx !== 0 && el === 2){
        arr[idx-1] *=2;
