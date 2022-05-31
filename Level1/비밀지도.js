@@ -61,8 +61,10 @@ function solution(n, arr1, arr2) {
 
       
       }
+      // 0과 1을 ' '와 '#'으로 변환 
       el = el.replace(/[1]/g,'#');
       el = el.replace(/[0]/g,' ');
+      // txt 초기화
       txt = '';
       
       return el;
