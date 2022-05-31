@@ -43,30 +43,34 @@ arr2	    [27 ,56, 19, 14, 14, 10]
 
 
 function solution(n, arr1, arr2) {
-  var answer = [];
   
-  let nArr = new Array(n).fill(0).map((el) => {
+  let chArr = arr1.map((el, idx) => {
+      //10진수를 OR 비트연산 후에 2진수로 변환 
+      el =  (el | arr2[idx]).toString(2);
+      console.log(el);
+      // 원소의 길이가 n이 아닐때 
+      if( el.length !== n ){
+        console.log(`길이가 맞지않습니다.`);
+        let txt = '';
+        // 부족한 길이만큼 0을 만든다.
+        for(var i=0; i< (n - el.length); i++){
+            txt+='0';
+        }
+        //0과 원소를 붙여서 할당해준다.
+        el = txt.concat(el);
+
+      
+      }
+      el = el.replace(/[1]/g,'#');
+      el = el.replace(/[0]/g,' ');
+      txt = '';
+      
+      return el;
+  });
   
-    return String(el).repeat(n);
-  });
-
-  console.log(nArr);
- 
-
-  let chArr1 =  arr1.map((el,idx)=> {
-    el = Number(el.toString(2)); 
-    console.log(typeof nArr[idx]);
-    return nArr[idx]|el;
-  });
-
-  let chArr2 =  arr2.map((el)=> {
-    el = Number(el.toString(2)); 
-    return el;
-  });
-
-  console.log(`chArr1 : ${chArr1}, chArr2 : ${chArr2}`);
-  return answer;
+  console.log(`chArr : ${chArr}`);
+  return chArr;
 }
 
-solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]);
-// solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]);
+// solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]);
+solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]);
