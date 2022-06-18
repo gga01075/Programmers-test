@@ -7,7 +7,8 @@
 오렐리를 위해 실패율을 구하는 코드를 완성하라.
 
 실패율은 다음과 같이 정의한다.
-스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+실패율 = 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+
 전체 스테이지의 개수 N, 게임을 이용하는 사용자가 현재 멈춰있는 스테이지의 번호가 담긴 배열 stages가 매개변수로 주어질 때,
 실패율이 높은 스테이지부터 내림차순으로 스테이지의 번호가 담겨있는 배열을 return 하도록 solution 함수를 완성하라.
 
@@ -48,5 +49,37 @@ N	stages	                    result
 
 [4,1,2,3]
 
+1. 총 플레이어 수 stages.length
+2. 각 스테이지마다 실패율
+  1부터 N까지 반복문을 돌미녀
+  1의 개수를 찾아
 
  */
+
+function solution(N, stages) {
+    var answer = [];
+    for(let i=1;i<=N;i++){
+        answer[i-1] = stages.filter(el => i === el).length;
+    }
+    console.log(answer);  //  각 스테이지에서 실패한 플레이어 수
+
+    let curPerson = stages.length;
+
+   let failRate =  answer.map( el => {
+       console.log(curPerson);
+       let stgPer = el;
+
+       el = el/curPerson;  // 각 스테이지의 실패율
+       curPerson -= stgPer;   // 다음 단계에 도달할 플레이어수
+        return el;
+    });
+
+    console.log(`failRate : ${failRate}`);
+
+
+
+
+    return answer;
+}
+
+solution(5,[2, 1, 2, 6, 2, 4, 3, 3]);
