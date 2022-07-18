@@ -49,21 +49,41 @@ N	stages	                    result
 
 [4,1,2,3]
 
-1. 총 플레이어 수 stages.length
-2. 각 스테이지마다 실패율
-  1부터 N까지 반복문을 돌미녀
-  1의 개수를 찾아
+매개변수 : 들어가는 요소
+함수(solution)
+반환값(return값)
+
+
+stages : 게임을 이용하는 사용자가 현재 멈춰있는 스테이지의 번호
+
+실패율 = 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+
+[2, 1, 2, 6, 2, 4, 3, 3]
+
+
+첫번째 스테이지까지 간 사람 1/8   7/56
+두번째 스테이지까지 간 사람 2/7   16/56
+세번째 스테이지까지 간 사람 2/4   28/56
+네번째 스테이지까지 간 사람 1/2   28/56
+다섯번째 스테이지까지 간 사람 1   0/56
+
+
+
+
+[3,2,1,4,5]
 
  */
 
 function solution(N, stages) {
-    var answer = [];
+    var answer = []; //  각 스테이지에서 실패한 플레이어 수
+    let curPerson = stages.length; // 현 스테이지 인원수
     for(let i=1;i<=N;i++){
         answer[i-1] = stages.filter(el => i === el).length;
     }
-    console.log(answer);  //  각 스테이지에서 실패한 플레이어 수
+    // console.log(answer);
+    // console.log('curPerson : ', curPerson);
 
-    let curPerson = stages.length;
+
 
    let failRate =  answer.map( el => {
        console.log(curPerson);
@@ -74,12 +94,33 @@ function solution(N, stages) {
         return el;
     });
 
-    console.log(`failRate : ${failRate}`);
+    // console.log(`failRate : ${failRate}`);
 
+    let sortKey = new Object();
 
+    failRate.forEach(function(item, index, arr2){
+        sortKey[(index+1)]=item;
+    })
 
+    // console.log('sortKey', sortKey)
 
-    return answer;
+    let sortFailrate = Object.entries(sortKey).sort((a, b) => b[1] - a[1]);
+
+    // console.log('sortFailrate', sortFailrate)
+
+    var failRank = []
+
+    for(let element of sortFailrate) {
+        failRank.push(Number(element[0]))
+    }
+    // console.log('failRank', failRank)
+    return failRank;
 }
 
 solution(5,[2, 1, 2, 6, 2, 4, 3, 3]);
+
+/*
+*  0.125 / 0.42857142857142855 / 0.5 / 0.5 / 0
+*  3,4,2,1,5
+*
+* */
